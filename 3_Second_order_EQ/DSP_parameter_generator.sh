@@ -1,39 +1,6 @@
 #!/bin/bash
 set -e
 
-#####################################################################
-#             SIGMADSP PARAMETER FILE GENERATOR SCRIPT              #
-#     Created by MCUdude - https://github.com/MCUdude/SigmaDSP      #
-#                                                                   #
-# This script will search for the following files in the current    #
-# directory and all sub directories:                                #
-#  [ProjectName]_IC_1_PARAM.h                                       #
-#  [ProjectName]_IC_1.h                                             #
-#  [ProjectName]_IC_2.h                                             #
-#  E2Prom.Hex                                                       #
-#                                                                   #
-# Here's an example on how you may arrange your project structure:  #
-#  My_Arduino_DSP_Project/                                          #
-#    L My_Arduino_DSP_Project.ino                                   #
-#    L DSP_parameter_generator.ps1                                  #
-#    L Sigma_studio_files/                                          #
-#      L [ProjectName].dspproj                                      #
-#      L export/                                                    #
-#        L [ProjectName]_IC_1_PARAM.h                               #
-#        L [ProjectName]_IC_1.h                                     #
-#        L [ProjectName]_IC_2.h                                     #
-#        L E2Prom.Hex                                               #
-#                                                                   #
-# It's important that the DSP is named IC 1 and the EEPROM IC 2 in  #
-# Sigma Studio, or else this script won't work.                     #
-#                                                                   #
-# Note that [ProjectName]_IC_2.h and E2Prom.Hex isn't mandatory     #
-# files. You will not be able to load firmware to the EEPROM        #
-# without these files though.                                       #
-#                                                                   #
-# Run  $ chmod +x DSP_parameter_generator.sh  to make this shell    #
-# script executable.                                                #
-#####################################################################
 
 # Print header
 clear
