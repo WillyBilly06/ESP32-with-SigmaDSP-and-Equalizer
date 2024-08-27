@@ -1,42 +1,4 @@
-#####################################################################
-#             SIGMADSP PARAMETER FILE GENERATOR SCRIPT              #
-#     Created by MCUdude - https://github.com/MCUdude/SigmaDSP      #
-#                                                                   #
-# This script will search for the following files in the current    #
-# directory and all sub directories:                                #
-#  [ProjectName]_IC1_PARAM.h                                        #
-#  [ProjectName]_IC1.h                                              #
-#  [ProjectName]_IC2.h                                              #
-#  E2Prom.Hex                                                       #
-#                                                                   #
-# Here's an example on how you may arrange your project structure:  #
-#  My_Arduino_DSP_Project/                                          #
-#    L My_Arduino_DSP_Project.ino                                   #
-#    L DSP_parameter_generator.ps1                                  #
-#    L Sigma_studio_files/                                          #
-#      L [ProjectName].dspproj                                      #
-#      L export/                                                    #
-#        L [ProjectName]_IC1_PARAM.h                                #
-#        L [ProjectName]_IC1.h                                      #
-#        L [ProjectName]_IC2.h                                      #
-#        L E2Prom.Hex                                               #
-#                                                                   #
-# It's important that the DSP is named IC1 and the EEPROM IC2 in    #
-# Sigma Studio, or else this script won't work.                     #
-#                                                                   #
-# Note that [ProjectName]_IC2.h and E2Prom.Hex isn't mandatory      #
-# files. You will not be able to load firmware to the EEPROM        #
-# without these files though.                                       #
-#                                                                   #
-# If you're not able to execute this script you have to enable      #
-# execution of unsigned Powershell scripts. Search for Powershell,  #
-# right click and select "Run as administrator". run the following  #
-# line:                                                             #
-#                                                                   #
-# set-executionpolicy remotesigned                                  #
-#                                                                   #
-# You should now be able to run this script by double clicking it.  #
-#####################################################################
+
 
 
 $outputFile = "./SigmaDSP_parameters.h"
