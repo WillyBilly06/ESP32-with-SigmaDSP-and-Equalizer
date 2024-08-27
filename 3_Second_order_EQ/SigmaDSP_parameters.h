@@ -3,45 +3,6 @@
 
 #include <SigmaDSP.h>
 
-/****************************************************************************
-| File name: SigmaDSP_parameters.h                                          |
-| Generation tool: Powershell                                               |
-| Date and time: 23.08.2024 13.14.44                                        |
-|                                                                           |
-| ADAU1701 parameter and program file header                                |
-| SigmaDSP library and its content is developed and maintained by MCUdude.  |
-| https://github.com/MCUdude/SigmaDSP                                       |
-|                                                                           |
-| Huge thanks to the Aida DSP team who have reverse engineered a lot of the |
-| Sigma DSP algorithms and made them open source and available to everyone. |
-| This library would never have existed if it weren't for the Aida DSP team |
-| and their incredible work.                                                |
-|                                                                           |
-| This file have been generated with the Sigmastudio_project_formatter.sh   |
-| script. This file contains all the DSP function block parameters and      |
-| addresses. It also contains the program that will be loaded to the        |
-| external EEPROM.                                                          |
-|                                                                           |
-| The *_COUNT macro holds the number of addresses in memory each complete   |
-| module takes.                                                             |
-|                                                                           |
-| The *_ADDR macro holds the current address for the module. Use this macro |
-| when changing the behaviour of the modules (EQs, volume etc.).            |
-|                                                                           |
-| The *_FIXFT macros holds the default value of the module. Use this when   |
-| restoring the default parameters.                                         |
-|                                                                           |
-| The DSP_eeprom_firmware[] array contains the DSP firmware, and can be     |
-| loaded using the writeFirmware method in the DSPEEPROM class.             |
-| When stored in the external i2c EEPROM, the firmware is automatically     |
-| loaded into the DSP on boot if the SELFBOOT pin is tied to Vcc.           |
-|                                                                           |
-| If you want to load the DSP firmware directly without using an external   |
-| EEPROM, you can simply run loadProgram() (located at the bottom of this   |
-| file) where you pass the SigmaDSP object as the only parameter.           |
-|                                                                           |
-****************************************************************************/
-
 /* 7-bit i2c addresses */
 #define DSP_I2C_ADDRESS (0x68 >> 1) & 0xFE
 #define EEPROM_I2C_ADDRESS (0xA0 >> 1) & 0xFE
