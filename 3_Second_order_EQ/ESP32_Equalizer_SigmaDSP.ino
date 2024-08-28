@@ -292,10 +292,12 @@ AiEsp32RotaryEncoder rotaryEncoder2 = AiEsp32RotaryEncoder(ROTARY_ENCODER_A_PIN2
 AiEsp32RotaryEncoder rotaryEncoder3 = AiEsp32RotaryEncoder(ROTARY_ENCODER_A_PIN3, ROTARY_ENCODER_B_PIN3, ROTARY_ENCODER_BUTTON_PIN, ROTARY_ENCODER_VCC_PIN, ROTARY_ENCODER_STEPS);
 AiEsp32RotaryEncoder rotaryEncoder4 = AiEsp32RotaryEncoder(ROTARY_ENCODER_A_PIN4, ROTARY_ENCODER_B_PIN4, ROTARY_ENCODER_BUTTON_PIN, ROTARY_ENCODER_VCC_PIN, ROTARY_ENCODER_STEPS);
 
+
 Adafruit_NeoPixel pixels1(NUMPIXELS1, BASS_LED, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel pixels2(NUMPIXELS1, TREBLE_LED, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel pixels3(NUMPIXELS1, MIDDLE_LED, NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel pixels4(NUMPIXELS1, VOLUME_LED, NEO_GRB + NEO_KHZ800);
+//Initialize NEOPIXELS Library (Set up the number of Pixels and PINOUT)
 
 
 // The first parameter is the Wire object we'll be using when communicating wth the DSP
@@ -312,6 +314,8 @@ SigmaDSP dsp(Wire, DSP_I2C_ADDRESS, 48000.00f /*,12*/);
 DSPEEPROM ee(Wire, EEPROM_I2C_ADDRESS, 256, 2);
 
 
+
+/*______________________________________________________________*/
 // Create an instance for each EQ block
 secondOrderEQ eqBand1;
 secondOrderEQ eqBand2;
@@ -320,9 +324,6 @@ secondOrderEQ eqBand4;
 secondOrderEQ eqBand5;
 secondOrderEQ eqBand6;
 secondOrderEQ eqBand7;
-
-
-
 /*______________________________________________________________*/
 uint32_t Wheel1(byte WheelPos1) {
   WheelPos1 = 255 - WheelPos1;
