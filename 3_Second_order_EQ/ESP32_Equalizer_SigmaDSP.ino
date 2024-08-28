@@ -200,27 +200,28 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   DO NOT REUSE THIS CODE WITHOUT "TRADEMARK" AND AUTHOR NAME.  
+   DO NOT REUSE THIS CODE WITHOUT "TRADEMARK" AND AUTHOR NAME.
+   
+/**********************************************|
+| Including SigmaDSP library                   |
+| https://github.com/MCUdude/SigmaDSP          |
+|                                              |
+| ESP32_Equalizer_SIGMADSP.ino                 |
+| This example controls a three bands EQs and  |
+| volume.                                      |
+|**********************************************/
+ 
+ ____________________________________________________________________________________________________________
+|                                                                                                            |
+|                        FOR PERSONAL USE ONLY! NO LIABILITY FOR COMMERCIAL USE!                             |
+|                                                                                                            |
+|____________________________________________________________________________________________________________|
 
    
    */
 
 
 
-
-
-
-/**********************************************|
-| SigmaDSP library                             |
-| https://github.com/MCUdude/SigmaDSP          |
-|                                              |
-| 3_Second_order_EQ.ino                        |
-| This example controls a four band EQs and    |
-| a master volume slider.                      |
-|                                              |
-| See the SigmaStudio project file if you want |
-| to learn more, tweak or do modifications.    |
-|**********************************************/
 
 
 
@@ -232,33 +233,35 @@
 #include "Arduino.h"
 #include "EEPROM.h"
 #include <Adafruit_NeoPixel.h>
-// Include generated parameter file
 #include "SigmaDSP_parameters.h"
+// Include generated parameter file
 
-#define EEPROM_SIZE 1024
+#define EEPROM_SIZE 1024  //Set EEPROM Size 
 
-#define SPEAKER1 23
-#define SPEAKER2 15
+#define SPEAKER1 23 
+// Use to control relay for preventing popping speaker as the ADAU1401/1701 will make a slightly large pop sound after turning on/off the board
+#define SPEAKER2 15 
+// Use to control relay for preventing popping speaker as the ADAU1401/1701 will make a slightly large pop sound after turning on/off the board
+
 int bass = 0;
 int middle = 0;
 int treble = 0;
 int volume = 0;
+//Set the range of Pixels for Adafruit NEOPIXELS library
 
 int8_t bass_volume;
 int8_t bass_volume1;
-
 int8_t middle_volume;
-
 int8_t treble_volume;
 int8_t treble_volume1;
-
 int8_t main_volume;
+//Equalizer values are adjustable based on reference.
 
 
 #define ROTARY_ENCODER_A_PIN1 16
 #define ROTARY_ENCODER_B_PIN1 4
 #define ROTARY_ENCODER_BUTTON_PIN -1
-#define ROTARY_ENCODER_VCC_PIN -1 /* 27 put -1 of Rotary encoder Vcc is connected directly to 3,3V; else you can use declared output pin for powering rotary encoder */
+#define ROTARY_ENCODER_VCC_PIN -1 /* 27 put -1 of Rotary encoder VCC is connected directly to 3,3V; else you can use declared output pin for powering rotary encoder */
 
 #define ROTARY_ENCODER_A_PIN2 5
 #define ROTARY_ENCODER_B_PIN2 17
@@ -269,17 +272,20 @@ int8_t main_volume;
 #define ROTARY_ENCODER_A_PIN4 25
 #define ROTARY_ENCODER_B_PIN4 26
 
+//Set the input pins for AiEsp32RotaryEncoder library, can adjust for personal reference
+
 #define BASS_LED 33
 #define MIDDLE_LED 32
 #define TREBLE_LED 18
 #define VOLUME_LED 19
+//Set pinouts to control the WS2812B LED Strip
 
 #define NUMPIXELS1 11  //Number of pixels in WS2812B
 #define NUMPIXELS2 11  //Number of pixels in WS2812B
 #define NUMPIXELS3 11  //Number of pixels in WS2812B
 #define NUMPIXELS4 11  //Number of pixels in WS2812B
 
-#define ROTARY_ENCODER_STEPS 7
+#define ROTARY_ENCODER_STEPS 7 //Set the steps of Rotary Encoder to register 1 turn
 
 AiEsp32RotaryEncoder rotaryEncoder1 = AiEsp32RotaryEncoder(ROTARY_ENCODER_A_PIN1, ROTARY_ENCODER_B_PIN1, ROTARY_ENCODER_BUTTON_PIN, ROTARY_ENCODER_VCC_PIN, ROTARY_ENCODER_STEPS);
 AiEsp32RotaryEncoder rotaryEncoder2 = AiEsp32RotaryEncoder(ROTARY_ENCODER_A_PIN2, ROTARY_ENCODER_B_PIN2, ROTARY_ENCODER_BUTTON_PIN, ROTARY_ENCODER_VCC_PIN, ROTARY_ENCODER_STEPS);
@@ -317,11 +323,7 @@ secondOrderEQ eqBand7;
 
 
 
-
-
-#define EEPROM_SIZE 64
-
-
+/*______________________________________________________________*/
 uint32_t Wheel1(byte WheelPos1) {
   WheelPos1 = 255 - WheelPos1;
   if (WheelPos1 < 85) {
@@ -373,7 +375,8 @@ uint32_t Wheel4(byte WheelPos4) {
   WheelPos4 -= 170;
   return pixels1.Color(255,195,0);
 }
-
+//Set color for each band and volume (Bass, Middle, Treble, Volume)
+/*______________________________________________________________*/
 void rotary_loop1() {
   EEPROM.commit();
   //dont print anything unless value changed
@@ -401,8 +404,6 @@ void rotary_loop1() {
       bass = 11;
     EEPROM.write(0, bass);
     EEPROM.commit();
-    Serial.print("Bass:");
-    Serial.println(bass);
     bass_volume += 2;
     if (bass_volume > 4)
       bass_volume = 4;
@@ -420,8 +421,6 @@ void rotary_loop1() {
       bass = 1;
     EEPROM.write(0, bass);
     EEPROM.commit();
-    Serial.print("Bass:");
-    Serial.println(bass);
     bass_volume -= 0;
     if (bass_volume < -16)
       bass_volume = -16;
@@ -433,8 +432,6 @@ void rotary_loop1() {
     EEPROM.write(1, bass_volume1);
   }
   //if value is changed compared to our last read
-  Serial.print(bass_volume);
-  Serial.println(bass_volume1);
   eqBand1.freq = 45;
   eqBand1.boost = bass_volume;
   eqBand1.state = parameters::state::on;
@@ -472,8 +469,6 @@ void rotary_loop2() {
       middle = 11;
     EEPROM.write(10, middle);
     EEPROM.commit();
-    Serial.print("Middle:");
-    Serial.println(middle);
     middle_volume += 2;
     if (middle_volume > 4)
       middle_volume = 4;
@@ -486,8 +481,6 @@ void rotary_loop2() {
       middle = 1;
     EEPROM.write(10, middle);
     EEPROM.commit();
-    Serial.print("Middle:");
-    Serial.println(middle);
     middle_volume -= 2;
     if (middle_volume < -16)
       middle_volume = -16;
@@ -495,7 +488,6 @@ void rotary_loop2() {
     EEPROM.commit();
   }
   //if value is changed compared to our last read
-  Serial.print(middle_volume);
   eqBand3.freq = 475;
   eqBand3.boost = middle_volume;
   // EQ is on by default, so no need to explicit turn it on
@@ -529,8 +521,6 @@ void rotary_loop3() {
       treble = 11;
     EEPROM.write(20, treble);
     EEPROM.commit();
-    Serial.print("Treble:");
-    Serial.println(treble);
     treble_volume += 2;
     if (treble_volume > 0)
       treble_volume = 0;
@@ -548,8 +538,6 @@ void rotary_loop3() {
       treble = 1;
     EEPROM.write(20, treble);
     EEPROM.commit();
-    Serial.print("Treble:");
-    Serial.println(treble);
     treble_volume -= 2;
     if (treble_volume < -20)
       treble_volume = -20;
@@ -604,8 +592,6 @@ void rotary_loop4() {
       volume = 11;
     EEPROM.write(30, volume);
     EEPROM.commit();
-    Serial.print("Volume:");
-    Serial.println(volume);
     main_volume += 2;
     if (main_volume > -2)
       main_volume = -2;
@@ -620,8 +606,6 @@ void rotary_loop4() {
       volume = 1;
     EEPROM.write(30, volume);
     EEPROM.commit();
-    Serial.print("Volume:");
-    Serial.println(volume);
     main_volume -= 2;
     if (main_volume < -20)
       main_volume = -60;
@@ -671,10 +655,7 @@ void setup() {
   volume = EEPROM.read(30);
   main_volume = EEPROM.read(35);
 
-  // Use this step if no EEPROM is present
- // 
- // 
-  ///
+
 loadProgram(dsp);
 
 if (dsp.ping() == 0)
@@ -692,17 +673,14 @@ else if (dsp.ping() == 2)
   digitalWrite(SPEAKER1, HIGH);
   digitalWrite(SPEAKER2, HIGH);
 }
+  
   pixels1.begin();
   pixels2.begin();
   pixels3.begin();
   pixels4.begin();
-  // Comment out the three code lines above and use this step instead if EEPROM is present
-  // The last parameter in writeFirmware is the FW version, and prevents the MCU from overwriting on every reboot
-  //Serial.print(F("\nLoading DSP program... "));
-  //ee.writeFirmware(DSP_eeprom_firmware, sizeof(DSP_eeprom_firmware), 0);
-  //dsp.reset();
-  //delay(2000);
-  //Serial.println("Done!\n"); // Wait for the FW to load from the EEPROM
+//Initialize the Pixels.
+
+  
   // Initilize EQ band 1
   eqBand1.filterType = parameters::filterType::lowShelf;
   eqBand1.S = 1;
@@ -735,11 +713,13 @@ else if (dsp.ping() == 2)
 
 
 
+/*______________________________________________________________*/
 
   eqBand1.freq = 45;
   eqBand1.boost = bass_volume;
   eqBand1.state = parameters::state::on;
   dsp.EQsecondOrder(MOD_MIDEQ1_ALG0_STAGE0_B0_ADDR, eqBand1);
+  
   eqBand2.freq = 70;
   eqBand2.boost = bass_volume1;
   // EQ is on by default, so no need to explicit turn it on
@@ -767,9 +747,12 @@ else if (dsp.ping() == 2)
  eqBand7.boost = treble_volume1;
  dsp.EQsecondOrder(MOD_MIDEQ1_ALG0_STAGE6_B0_ADDR, eqBand7);
 
-  dsp.volume_slew(MOD_SWVOL1_ALG0_TARGET_ADDR, main_volume);
-  dsp.volume_slew(MOD_SWVOL1_ALG1_TARGET_ADDR, main_volume);
-  
+ dsp.volume_slew(MOD_SWVOL1_ALG0_TARGET_ADDR, main_volume);
+ dsp.volume_slew(MOD_SWVOL1_ALG1_TARGET_ADDR, main_volume);
+
+ //Change each band frequency if needed. Recommend not to exceed over +10dB
+  /*______________________________________________________________*/
+
   rotaryEncoder1.begin();
   rotaryEncoder1.setup(readEncoderISR);
   rotaryEncoder2.begin();
@@ -779,7 +762,7 @@ else if (dsp.ping() == 2)
   rotaryEncoder4.begin();
   rotaryEncoder4.setup(readEncoderISR);
 
-  bool circleValues = false;
+  bool circleValues = false; 
   rotaryEncoder1.setBoundaries(-1000, 1000, circleValues);  //minValue, maxValue, circleValues true|false (when max go to min and vice versa)
   rotaryEncoder1.setAcceleration(0);                        //or set the value - larger number = more accelearation; 0 or 1 means disabled acceleration
   rotaryEncoder2.setBoundaries(-1000, 1000, circleValues);  //minValue, maxValue, circleValues true|false (when max go to min and vice versa)
@@ -796,5 +779,4 @@ void loop() {
   rotary_loop2();
   rotary_loop3();
   rotary_loop4();
-  EEPROM.commit();
 }
