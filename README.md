@@ -4,7 +4,11 @@
 This project aims to be more adaptable to people's preferences by utilizing others' libraries to replace the traditional equalizer circuit (NE5532A/AP, OPA2604, etc). 
 
 # Table of Contents
-[How to connect ADAU14/1701 board?](https://github.com/WillyBilly06/ESP32-with-SigmaDSP-and-Equalizer?tab=readme-ov-file#adau17011401)
+* [How to connect ADAU14/1701 board?](https://github.com/WillyBilly06/ESP32-with-SigmaDSP-and-Equalizer?tab=readme-ov-file#adau17011401)
+* [How to connect Rotary Encoder?](https://github.com/WillyBilly06/ESP32-with-SigmaDSP-and-Equalizer?tab=readme-ov-file#rotary-encoder)
+* [How to connect WS2812B Strip](https://github.com/WillyBilly06/ESP32-with-SigmaDSP-and-Equalizer?tab=readme-ov-file#ws2812b-led-strip)
+* [What Libraries are required for this project?](https://github.com/WillyBilly06/ESP32-with-SigmaDSP-and-Equalizer?tab=readme-ov-file#libraries-requirement)
+* [LICENSE](https://github.com/WillyBilly06/ESP32-with-SigmaDSP-and-Equalizer/blob/main/LICENSE)
 
 # ADAU1701/1401
 <img src="https://github.com/user-attachments/assets/1dbf24c0-6796-4ced-b171-13d30fe7abb2" width=45% height=45%>
