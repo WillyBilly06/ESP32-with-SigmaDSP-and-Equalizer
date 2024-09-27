@@ -1,4 +1,6 @@
-# ESP32-with-SigmaDSP-and-Equalizer
+# ESP32 with SigmaDSP and Equalizer
+
+
 
 
 
