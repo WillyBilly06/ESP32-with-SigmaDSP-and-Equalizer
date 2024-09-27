@@ -210,7 +210,7 @@
 | This example controls a three bands EQs and  |
 | volume.                                      |
 |**********************************************/
- 
+ /*
  ____________________________________________________________________________________________________________
 |                                                                                                            |
 |                        FOR PERSONAL USE ONLY! NO LIABILITY FOR COMMERCIAL USE!                             |
@@ -247,6 +247,7 @@ int bass = 0;
 int middle = 0;
 int treble = 0;
 int volume = 0;
+int delta = 0;
 //Set the range of Pixels for Adafruit NEOPIXELS library
 
 int8_t bass_volume;
@@ -422,7 +423,7 @@ void rotary_loop1() {
       bass = 1;
     EEPROM.write(0, bass);
     EEPROM.commit();
-    bass_volume -= 0;
+    bass_volume -= 2;
     if (bass_volume < -16)
       bass_volume = -16;
     EEPROM.write(5, bass_volume);
@@ -656,6 +657,120 @@ void setup() {
   volume = EEPROM.read(30);
   main_volume = EEPROM.read(35);
 
+  for (int x = 0; x < 12; x++)
+  {
+      for (byte i = 0; i < 11; i++) {
+    if (x == 0) {
+      pixels1.setPixelColor(i, pixels1.Color(0, 0, 0));
+    } else if (x > 0) {
+      uint32_t pixelColor = (x > i) ? Wheel1((10 - i) * 11) : 0;
+      pixels1.setPixelColor(i, pixelColor);
+    } else {
+      uint32_t pixelColor = (x < -i) ? Wheel1((i + 1) * 11) : 0;
+      pixels1.setPixelColor(11 - i, pixelColor);
+    }
+  }
+  pixels1.show();
+
+    for (byte i = 0; i < 11; i++) {
+    if (x == 0) {
+      pixels2.setPixelColor(i, pixels2.Color(0, 0, 0));
+    } else if (x > 0) {
+      uint32_t pixelColor = (x > i) ? Wheel2((10 - i) * 11) : 0;
+      pixels2.setPixelColor(i, pixelColor);
+    } else {
+      uint32_t pixelColor = (x < -i) ? Wheel2((i + 1) * 11) : 0;
+      pixels2.setPixelColor(11 - i, pixelColor);
+    }
+  }
+  pixels2.show();
+
+    for (byte i = 0; i < 11; i++) {
+    if (x == 0) {
+      pixels3.setPixelColor(i, pixels3.Color(0, 0, 0));
+    } else if (x > 0) {
+      uint32_t pixelColor = (x > i) ? Wheel3((10 - i) * 11) : 0;
+      pixels3.setPixelColor(i, pixelColor);
+    } else {
+      uint32_t pixelColor = (x < -i) ? Wheel3((i + 1) * 11) : 0;
+      pixels3.setPixelColor(11 - i, pixelColor);
+    }
+  }
+  pixels3.show();
+
+    for (byte i = 0; i < 11; i++) {
+    if (x == 0) {
+      pixels4.setPixelColor(i, pixels4.Color(0, 0, 0));
+    } else if (x > 0) {
+      uint32_t pixelColor = (x > i) ? Wheel4((10 - i) * 11) : 0;
+      pixels4.setPixelColor(i, pixelColor);
+    } else {
+      uint32_t pixelColor = (x < -i) ? Wheel4((i + 1) * 11) : 0;
+      pixels4.setPixelColor(11 - i, pixelColor);
+    }
+  }
+  pixels4.show();
+  
+  }
+  delta -= 1;
+  if (delta == -1)
+  {
+    for (int x = 11; x > -1; x--)
+    {
+      for (byte i = 0; i < 11; i++) {
+    if (x == 0) {
+      pixels1.setPixelColor(i, pixels1.Color(0, 0, 0));
+    } else if (x > 0) {
+      uint32_t pixelColor = (x > i) ? Wheel1((10 - i) * 11) : 0;
+      pixels1.setPixelColor(i, pixelColor);
+    } else {
+      uint32_t pixelColor = (x < -i) ? Wheel1((i + 1) * 11) : 0;
+      pixels1.setPixelColor(11 - i, pixelColor);
+    }
+  }
+  pixels1.show();
+
+    for (byte i = 0; i < 11; i++) {
+    if (x == 0) {
+      pixels2.setPixelColor(i, pixels2.Color(0, 0, 0));
+    } else if (x > 0) {
+      uint32_t pixelColor = (x > i) ? Wheel2((10 - i) * 11) : 0;
+      pixels2.setPixelColor(i, pixelColor);
+    } else {
+      uint32_t pixelColor = (x < -i) ? Wheel2((i + 1) * 11) : 0;
+      pixels2.setPixelColor(11 - i, pixelColor);
+    }
+  }
+  pixels2.show();
+
+    for (byte i = 0; i < 11; i++) {
+    if (x == 0) {
+      pixels3.setPixelColor(i, pixels3.Color(0, 0, 0));
+    } else if (x > 0) {
+      uint32_t pixelColor = (x > i) ? Wheel3((10 - i) * 11) : 0;
+      pixels3.setPixelColor(i, pixelColor);
+    } else {
+      uint32_t pixelColor = (x < -i) ? Wheel3((i + 1) * 11) : 0;
+      pixels3.setPixelColor(11 - i, pixelColor);
+    }
+  }
+  pixels3.show();
+
+    for (byte i = 0; i < 11; i++) {
+    if (x == 0) {
+      pixels4.setPixelColor(i, pixels4.Color(0, 0, 0));
+    } else if (x > 0) {
+      uint32_t pixelColor = (x > i) ? Wheel4((10 - i) * 11) : 0;
+      pixels4.setPixelColor(i, pixelColor);
+    } else {
+      uint32_t pixelColor = (x < -i) ? Wheel4((i + 1) * 11) : 0;
+      pixels4.setPixelColor(11 - i, pixelColor);
+    }
+  }
+  pixels4.show();
+
+    }
+  }
 
 loadProgram(dsp);
 
