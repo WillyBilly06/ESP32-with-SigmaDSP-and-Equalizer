@@ -76,10 +76,10 @@ For additional information, here is the current wiring for 4 LED strips:
 | DIN | GPIO 19 |
 | GND | GND |
 
-#Libraries Requirement
+# Libraries Requirement
 https://github.com/MCUdude/SigmaDSP <br />
 https://github.com/igorantolic/ai-esp32-rotary-encoder <br />
 https://github.com/adafruit/Adafruit_NeoPixel
-#LICENSE
+# LICENSE
                                  Apache License
 
