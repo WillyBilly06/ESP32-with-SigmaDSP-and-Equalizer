@@ -4,7 +4,7 @@
 This project aims to be more adaptable to people's preferences by utilizing others' libraries to replace the traditional equalizer circuit (NE5532A/AP, OPA2604, etc). 
 
 # Table of Contents
-[How to connect ADAU14/1701 board?] (https://github.com/WillyBilly06/ESP32-with-SigmaDSP-and-Equalizer?tab=readme-ov-file#adau17011401)
+[How to connect ADAU14/1701 board?](https://github.com/WillyBilly06/ESP32-with-SigmaDSP-and-Equalizer?tab=readme-ov-file#adau17011401)
 
 # ADAU1701/1401
 <img src="https://github.com/user-attachments/assets/1dbf24c0-6796-4ced-b171-13d30fe7abb2" width=45% height=45%>
