@@ -15,3 +15,32 @@ Here is the information on how to wire the ADAU1701/1401 board to the ESP32:
 
 # Rotary Encoder
 The default amount of encoders for this project is 4 (Bass, Middle, Treble, and Volume), and these are customizable based on your project.
+For additional information, here is the current wiring for 4 encoders:
+
+| Rotary Encoder (Bass) | ESP32 |
+|------|----------------|
+| 5V | VIN or External Power Supply |
+| SCL | GPIO 21 |
+| SDA | GPIO 22 |
+| GND | GND |
+
+| Rotary Encoder (Middle) | ESP32 |
+|------|----------------|
+| 5V | VIN or External Power Supply |
+| SCL | GPIO 21 |
+| SDA | GPIO 22 |
+| GND | GND |
+
+| Rotary Encoder (Treble) | ESP32 |
+|------|----------------|
+| 5V | VIN or External Power Supply |
+| SCL | GPIO 21 |
+| SDA | GPIO 22 |
+| GND | GND |
+
+| Rotary Encoder (Volume) | ESP32 |
+|------|----------------|
+| 5V | VIN or External Power Supply |
+| SCL | GPIO 21 |
+| SDA | GPIO 22 |
+| GND | GND |
