@@ -29,22 +29,22 @@ For additional information, here is the current wiring for 4 encoders:
 | Rotary Encoder (Middle) | ESP32 |
 |------|----------------|
 | VIN | 3.3V |
-| CLK | GPIO 16 |
-| DT | GPIO 4 |
+| CLK | GPIO 16|
+| DT | GPIO 4|
 | GND | GND |
 
 | Rotary Encoder (Treble) | ESP32 |
 |------|----------------|
 | VIN | 3.3V |
-| CLK | GPIO 5 |
-| DT | GPIO 17 |
+| CLK | GPIO 5|
+| DT | GPIO 17|
 | GND | GND |
 
 | Rotary Encoder (Volume) | ESP32 |
 |------|----------------|
 | VIN | 3.3V |
-| CLK | GPIO 27 |
-| DT | GPIO 14 |
+| CLK | GPIO 27|
+| DT | GPIO 14|
 | GND | GND |
 
 # WS2812B Led Strip
