@@ -13,4 +13,5 @@ Here is the information on how to wire the ADAU1701/1401 board to the ESP32:
 | SDA | GPIO 22 |
 | GND | GND |
 
-
+# Rotary Encoder
+The default amount of encoders for this project is 4 (Bass, Middle, Treble, and Volume), and these are customizable based on your project.
