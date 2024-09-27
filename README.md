@@ -81,5 +81,5 @@ https://github.com/MCUdude/SigmaDSP <br />
 https://github.com/igorantolic/ai-esp32-rotary-encoder <br />
 https://github.com/adafruit/Adafruit_NeoPixel
 # LICENSE
-                                 Apache License
+                                # Apache License
 
