@@ -1,7 +1,7 @@
 # ESP32 with SigmaDSP and Equalizer
 
 
-This project aims to be more adaptable to people's preferences by replacing the traditional equalizer circuit (NE5532A/AP, OPA2604, etc.). 
+This project aims to be more adaptable to people's preferences by utilizing others' libraries to replace the traditional equalizer circuit (NE5532A/AP, OPA2604, etc). 
 
 # ADAU1701/1401
 <img src="https://github.com/user-attachments/assets/1dbf24c0-6796-4ced-b171-13d30fe7abb2" width=45% height=45%>
